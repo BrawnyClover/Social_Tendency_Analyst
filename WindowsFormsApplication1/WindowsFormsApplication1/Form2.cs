@@ -38,10 +38,31 @@ namespace WindowsFormsApplication1
             InitializeComponent();
             InitBrowser(url);
             var settings = new CefSettings();
-            settings.CachePath = "cache";
             frm = _form;
+            //while(browser.IsLoading == false)
+            //{
+            //    Application.DoEvents();
+            //}
+            //browser.Focus();
+            //login();
         }
-       
+
+        public void login()
+        {
+            string id = "sonbill@daum.net";
+            string passwd = "adgjmadgjmadgjm";
+            for (int i = 0; i < 4; i++) { SendKeys.Send("{tab}"); }
+            for(int i=0; i<id.Length; i++)
+            {
+                SendKeys.Send(id[i].ToString());
+            }
+            SendKeys.Send("{tab}");
+            for (int i = 0; i < passwd.Length; i++)
+            {
+                SendKeys.Send(passwd[i].ToString());
+            }
+            SendKeys.Send("{ENTER}");
+        }
         void parseHtml()
         {
             Stopwatch sw = new Stopwatch();
@@ -97,6 +118,11 @@ namespace WindowsFormsApplication1
         private void showDevTools_Click(object sender, EventArgs e)
         {
             browser.ShowDevTools();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            login();
         }
     }
 }

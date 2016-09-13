@@ -38,6 +38,7 @@
             this.parseTag = new System.Windows.Forms.TextBox();
             this.parseButton = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.showFriendList = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // urlString
@@ -97,7 +98,7 @@
             this.parsedCode.Multiline = true;
             this.parsedCode.Name = "parsedCode";
             this.parsedCode.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.parsedCode.Size = new System.Drawing.Size(656, 386);
+            this.parsedCode.Size = new System.Drawing.Size(656, 180);
             this.parsedCode.TabIndex = 10;
             // 
             // parseTag
@@ -128,11 +129,21 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
+            // showFriendList
+            // 
+            this.showFriendList.Location = new System.Drawing.Point(548, 311);
+            this.showFriendList.Multiline = true;
+            this.showFriendList.Name = "showFriendList";
+            this.showFriendList.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.showFriendList.Size = new System.Drawing.Size(656, 200);
+            this.showFriendList.TabIndex = 14;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1334, 532);
+            this.Controls.Add(this.showFriendList);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.parseButton);
             this.Controls.Add(this.parseTag);
@@ -161,6 +172,7 @@
         private System.Windows.Forms.TextBox parseTag;
         private System.Windows.Forms.Button parseButton;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox showFriendList;
     }
 }
 
