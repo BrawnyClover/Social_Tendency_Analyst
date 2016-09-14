@@ -19,7 +19,6 @@ namespace WindowsFormsApplication1
     {
         public string name;
         public string href;
-
     }
     public partial class Form1 : Form
     {
@@ -38,16 +37,13 @@ namespace WindowsFormsApplication1
             form.setpswd(pswdText.Text);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void parseButton_Click(object sender, EventArgs e)
         {
             handling hand = new handling(this);
             parsedCode.Text = "";
             hand.parseTextFunc("//body/div/div/div/div/div/div/div/div/div");
-            //temp t = new temp();
-            //t.tex();
         }
-
-        private void button1_Click_1(object sender, EventArgs e)
+        private void copyBtn_Click(object sender, EventArgs e)
         {
             sourceText.SelectAll();
             sourceText.Copy();

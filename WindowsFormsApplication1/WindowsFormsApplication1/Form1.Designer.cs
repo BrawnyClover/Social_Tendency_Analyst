@@ -37,7 +37,7 @@
             this.parsedCode = new System.Windows.Forms.TextBox();
             this.parseTag = new System.Windows.Forms.TextBox();
             this.parseButton = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.copyBtn = new System.Windows.Forms.Button();
             this.showFriendList = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
@@ -117,17 +117,17 @@
             this.parseButton.TabIndex = 12;
             this.parseButton.Text = "parse";
             this.parseButton.UseVisualStyleBackColor = true;
-            this.parseButton.Click += new System.EventHandler(this.button1_Click);
+            this.parseButton.Click += new System.EventHandler(this.parseButton_Click);
             // 
-            // button1
+            // copyBtn
             // 
-            this.button1.Location = new System.Drawing.Point(1159, 46);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(45, 56);
-            this.button1.TabIndex = 13;
-            this.button1.Text = "Copy";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            this.copyBtn.Location = new System.Drawing.Point(1159, 46);
+            this.copyBtn.Name = "copyBtn";
+            this.copyBtn.Size = new System.Drawing.Size(45, 56);
+            this.copyBtn.TabIndex = 13;
+            this.copyBtn.Text = "Copy";
+            this.copyBtn.UseVisualStyleBackColor = true;
+            this.copyBtn.Click += new System.EventHandler(this.copyBtn_Click);
             // 
             // showFriendList
             // 
@@ -144,7 +144,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1334, 532);
             this.Controls.Add(this.showFriendList);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.copyBtn);
             this.Controls.Add(this.parseButton);
             this.Controls.Add(this.parseTag);
             this.Controls.Add(this.parsedCode);
@@ -171,7 +171,7 @@
         public System.Windows.Forms.TextBox parsedCode;
         private System.Windows.Forms.TextBox parseTag;
         private System.Windows.Forms.Button parseButton;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button copyBtn;
         public System.Windows.Forms.TextBox showFriendList;
     }
 }

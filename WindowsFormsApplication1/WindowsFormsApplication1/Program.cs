@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Diagnostics;
+using CefSharp;
+using CefSharp.WinForms;
 
 namespace WindowsFormsApplication1
 {
@@ -21,7 +24,57 @@ namespace WindowsFormsApplication1
     }
     public class gathering
     {
+        Form1 form1;
+        Form2 form2;
+        public gathering(Form1 form1, Form2 form2)
+        {
+            this.form1 = form1;
+            this.form2 = form2;
+        }
+        public void parseHtml()
+        {
+            Stopwatch sw = new Stopwatch();
+            #region using browser;
 
+            /*frm.time.Text = "0000" + " : " + cnt.ToString();
+            while (true)
+            {
+                Application.DoEvents();
+                browser.Focus();
+                if (flag == false)
+                {
+                    sw.Start();
+                    flag = true;
+                }
+                if (sw.ElapsedMilliseconds > 2000)
+                {
+                    frm.time.Text = sw.ElapsedMilliseconds.ToString() + " : " + cnt.ToString();
+                    ScrollToBottom();
+                    sw.Stop();
+                    sw.Reset();
+                    flag = false;
+                    if (++cnt > 3) break;
+                }
+                
+            }
+            //frm.sourceText.Text = browser.GetMainFrame().ViewSource();
+            */
+            #endregion
+            form2.browser.Focus();
+            sw.Start();
+            while (true)
+            {
+                if (sw.ElapsedMilliseconds > 8000) break;
+                ScrollToBottom();
+            }
+            form1.sourceText.Text = form2.browser.GetSourceAsync().Result;
+        }
+        private void ScrollToBottom()
+        {
+            // MOST IMP : processes all windows messages queue
+            Application.DoEvents();
+            SendKeys.Send(" ");
+        }
     }
     public class handling
     {
@@ -39,7 +92,6 @@ namespace WindowsFormsApplication1
             mydoc.LoadHtml(parseStr);
             HtmlAgilityPack.HtmlNodeCollection nodeCol = null;
             HtmlAgilityPack.HtmlNodeCollection nodeCol2 = null;
-            setForm.parsedCode.Text += "test";
             try
             {
                 nodeCol = mydoc.DocumentNode.SelectNodes(str + "/h3/a[@href]" + "|" + str + "/h1/a[@href]");
@@ -60,7 +112,8 @@ namespace WindowsFormsApplication1
                     //showFriendList.Text += node.InnerText + "   ";
                     ++cnt;
                 }
-                setForm.showFriendList.Text += cnt.ToString();
+                setForm.showFriendList.Text += cnt.ToString()+Environment.NewLine;
+                setForm.showFriendList.AppendText(Environment.NewLine);
                 cnt = 0;
                 foreach (HtmlAgilityPack.HtmlNode node in nodeCol)
                 {
@@ -71,6 +124,7 @@ namespace WindowsFormsApplication1
                     ++cnt;
                 }
                 setForm.parsedCode.Text += cnt.ToString();
+                setForm.showFriendList.AppendText(Environment.NewLine);
                 output(dataList);
             }
             catch (NullReferenceException)
@@ -84,19 +138,23 @@ namespace WindowsFormsApplication1
             {
                 try
                 {
-                    setForm.parsedCode.Text += data.href + "        \n";
+                    setForm.parsedCode.Text += data.href;
+                    setForm.parsedCode.AppendText(Environment.NewLine);
                 }
                 catch (NullReferenceException)
                 {
-                    setForm.parsedCode.Text += "empty value         \n";
+                    setForm.parsedCode.Text += "empty value";
+                    setForm.parsedCode.AppendText(Environment.NewLine);
                 }
                 try
                 {
-                    setForm.showFriendList.Text += data.name + "        \n";
+                    setForm.showFriendList.Text += data.name+"  ";
+                    setForm.parsedCode.AppendText(Environment.NewLine);
                 }
                 catch (NullReferenceException)
                 {
-                    setForm.showFriendList.Text += "empty value         \n";
+                    setForm.showFriendList.Text += "empty value";
+                    setForm.parsedCode.AppendText(Environment.NewLine);
                 }
             }
         }

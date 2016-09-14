@@ -30,18 +30,21 @@ namespace WindowsFormsApplication1
             this.passwd = passwd;
         }
         public ChromiumWebBrowser browser;
+        
         public void InitBrowser(string url)
         {
             this.url = url;
-            Cef.Initialize(new CefSettings());
+            try
+            {
+                Cef.Initialize(new CefSettings());
+            }
+            catch (System.Exception) { }
             browser = new ChromiumWebBrowser(url)
             {
                 Dock = DockStyle.Fill,
             };
         
             this.Controls.Add(browser);
-            //browser.Location = new Point(0, 0);
-            //browser.Bounds = new Rectangle(0, 0, 500, 300);
         }
         public Form2(string url, Form1 _form)
         {
@@ -49,12 +52,6 @@ namespace WindowsFormsApplication1
             InitBrowser(url);
             var settings = new CefSettings();
             frm = _form;
-            //while(browser.IsLoading == false)
-            //{
-            //    Application.DoEvents();
-            //}
-            //browser.Focus();
-            //login();
         }
 
         public void login()
@@ -71,57 +68,12 @@ namespace WindowsFormsApplication1
             }
             SendKeys.Send("{ENTER}");
         }
-        void parseHtml()
-        {
-            Stopwatch sw = new Stopwatch();
-            #region using browser;
-            
-            /*frm.time.Text = "0000" + " : " + cnt.ToString();
-            while (true)
-            {
-                Application.DoEvents();
-                browser.Focus();
-                if (flag == false)
-                {
-                    sw.Start();
-                    flag = true;
-                }
-                if (sw.ElapsedMilliseconds > 2000)
-                {
-                    frm.time.Text = sw.ElapsedMilliseconds.ToString() + " : " + cnt.ToString();
-                    ScrollToBottom();
-                    sw.Stop();
-                    sw.Reset();
-                    flag = false;
-                    if (++cnt > 3) break;
-                }
-                
-            }
-            //frm.sourceText.Text = browser.GetMainFrame().ViewSource();
-            */
-            #endregion
-            browser.Focus();
-            sw.Start();
-            while (true)
-            {
-                if (sw.ElapsedMilliseconds > 8000) break;
-                ScrollToBottom();
-            }
-            frm.sourceText.Text = browser.GetSourceAsync().Result;
-        }
-
-        private void ScrollToBottom()
-        {
-            // MOST IMP : processes all windows messages queue
-            Application.DoEvents();
-            SendKeys.Send(" ");
-        }
-        
 
         private void button1_Click(object sender, EventArgs e)
         {
+            gathering Gatherer = new gathering(frm,this);
             browser.Load("https://m.facebook.com/profile.php?v=friends&ref=bookmarks");
-            parseHtml();
+            Gatherer.parseHtml();
         }
 
         private void showDevTools_Click(object sender, EventArgs e)
