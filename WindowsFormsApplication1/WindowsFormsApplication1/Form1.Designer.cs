@@ -172,7 +172,7 @@
         private System.Windows.Forms.TextBox parseTag;
         private System.Windows.Forms.Button parseButton;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox showFriendList;
+        public System.Windows.Forms.TextBox showFriendList;
     }
 }
 
