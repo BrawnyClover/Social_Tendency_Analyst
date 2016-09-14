@@ -19,6 +19,16 @@ namespace WindowsFormsApplication1
     {
         Form1 frm;
         string url;
+        private string id;
+        private string passwd;
+        public void setId(string id)
+        {
+            this.id = id;
+        }
+        public void setpswd(string passwd)
+        {
+            this.passwd = passwd;
+        }
         public ChromiumWebBrowser browser;
         public void InitBrowser(string url)
         {
@@ -49,8 +59,6 @@ namespace WindowsFormsApplication1
 
         public void login()
         {
-            string id = "sonbill@daum.net";
-            string passwd = "adgjmadgjmadgjm";
             for (int i = 0; i < 4; i++) { SendKeys.Send("{tab}"); }
             for(int i=0; i<id.Length; i++)
             {
@@ -66,8 +74,8 @@ namespace WindowsFormsApplication1
         void parseHtml()
         {
             Stopwatch sw = new Stopwatch();
-            bool flag = false;
-            int cnt = 0;
+            #region using browser;
+            
             /*frm.time.Text = "0000" + " : " + cnt.ToString();
             while (true)
             {
@@ -91,6 +99,7 @@ namespace WindowsFormsApplication1
             }
             //frm.sourceText.Text = browser.GetMainFrame().ViewSource();
             */
+            #endregion
             browser.Focus();
             sw.Start();
             while (true)

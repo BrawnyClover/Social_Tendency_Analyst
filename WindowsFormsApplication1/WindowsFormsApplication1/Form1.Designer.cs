@@ -30,8 +30,8 @@
         {
             this.urlString = new System.Windows.Forms.TextBox();
             this.navigator = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.idText = new System.Windows.Forms.TextBox();
+            this.pswdText = new System.Windows.Forms.TextBox();
             this.time = new System.Windows.Forms.TextBox();
             this.sourceText = new System.Windows.Forms.TextBox();
             this.parsedCode = new System.Windows.Forms.TextBox();
@@ -59,22 +59,22 @@
             this.navigator.UseVisualStyleBackColor = true;
             this.navigator.Click += new System.EventHandler(this.navigator_Click);
             // 
-            // textBox1
+            // idText
             // 
-            this.textBox1.Location = new System.Drawing.Point(37, 46);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(354, 28);
-            this.textBox1.TabIndex = 7;
-            this.textBox1.Text = "sonbill@daum.net";
+            this.idText.Location = new System.Drawing.Point(37, 46);
+            this.idText.Name = "idText";
+            this.idText.Size = new System.Drawing.Size(354, 28);
+            this.idText.TabIndex = 7;
+            this.idText.Text = "sonbill@daum.net";
             // 
-            // textBox2
+            // pswdText
             // 
-            this.textBox2.Location = new System.Drawing.Point(37, 80);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(354, 28);
-            this.textBox2.TabIndex = 7;
-            this.textBox2.Text = "adgjmadgjmadgjm";
-            this.textBox2.UseSystemPasswordChar = true;
+            this.pswdText.Location = new System.Drawing.Point(37, 80);
+            this.pswdText.Name = "pswdText";
+            this.pswdText.Size = new System.Drawing.Size(354, 28);
+            this.pswdText.TabIndex = 7;
+            this.pswdText.Text = "adgjmadgjmadgjm";
+            this.pswdText.UseSystemPasswordChar = true;
             // 
             // time
             // 
@@ -121,11 +121,11 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(1264, 51);
+            this.button1.Location = new System.Drawing.Point(1159, 46);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(45, 56);
             this.button1.TabIndex = 13;
-            this.button1.Text = "button1";
+            this.button1.Text = "Copy";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
@@ -150,8 +150,8 @@
             this.Controls.Add(this.parsedCode);
             this.Controls.Add(this.sourceText);
             this.Controls.Add(this.time);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.pswdText);
+            this.Controls.Add(this.idText);
             this.Controls.Add(this.navigator);
             this.Controls.Add(this.urlString);
             this.Name = "Form1";
@@ -164,8 +164,8 @@
         #endregion
         private System.Windows.Forms.TextBox urlString;
         private System.Windows.Forms.Button navigator;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox idText;
+        private System.Windows.Forms.TextBox pswdText;
         public System.Windows.Forms.TextBox time;
         public System.Windows.Forms.TextBox sourceText;
         public System.Windows.Forms.TextBox parsedCode;
