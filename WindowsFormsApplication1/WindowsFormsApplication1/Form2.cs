@@ -21,6 +21,7 @@ namespace WindowsFormsApplication1
         string url;
         private string id;
         private string passwd;
+        List<personalData> dataList;
         public void setId(string id)
         {
             this.id = id;
@@ -71,9 +72,14 @@ namespace WindowsFormsApplication1
 
         private void button1_Click(object sender, EventArgs e)
         {
+            string htmlCode="";
             gathering Gatherer = new gathering(frm,this);
-            browser.Load("https://m.facebook.com/profile.php?v=friends&ref=bookmarks");
-            Gatherer.parseHtml();
+            htmlCode=Gatherer.parseHtml("https://m.facebook.com/profile.php?v=friends&ref=bookmarks");
+            handling hand = new handling(frm,htmlCode);
+            frm.parsedCode.Text = "";
+            hand.parseTextFunc("//body/div/div/div/div/div/div/div/div/div");
+            this.dataList = hand.getList();
+            frm.loaded.Text = Gatherer.parseHtml("https://www.facebook.com" + dataList[0].href + "&sk=likes");
         }
 
         private void showDevTools_Click(object sender, EventArgs e)

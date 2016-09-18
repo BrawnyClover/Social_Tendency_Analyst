@@ -22,17 +22,25 @@ namespace WindowsFormsApplication1
             Application.Run(new Form1());
         }
     }
+    public struct personalData
+    {
+        public string name;
+        public string href;
+    }
     public class gathering
     {
         Form1 form1;
         Form2 form2;
+        public string htmlCode="";
+        public gathering() { }
         public gathering(Form1 form1, Form2 form2)
         {
             this.form1 = form1;
             this.form2 = form2;
         }
-        public void parseHtml()
+        public string parseHtml(string url)
         {
+            form2.browser.Load(url);
             Stopwatch sw = new Stopwatch();
             #region using browser;
 
@@ -67,7 +75,8 @@ namespace WindowsFormsApplication1
                 if (sw.ElapsedMilliseconds > 8000) break;
                 ScrollToBottom();
             }
-            form1.sourceText.Text = form2.browser.GetSourceAsync().Result;
+            htmlCode = form2.browser.GetSourceAsync().Result;
+            return htmlCode;
         }
         private void ScrollToBottom()
         {
@@ -80,14 +89,16 @@ namespace WindowsFormsApplication1
     {
         Form1 setForm;
         int cnt = 0;
+        string htmlCode;
         List<personalData> dataList = new List<personalData>();
-        public handling(Form1 form)
+        public handling(Form1 form, string htmlCode)
         {
             setForm = form;
+            this.htmlCode = htmlCode;
         }
         public void parseTextFunc(string str)
         {
-            string parseStr = setForm.sourceText.Text;
+            string parseStr = htmlCode;
             HtmlAgilityPack.HtmlDocument mydoc = new HtmlAgilityPack.HtmlDocument();
             mydoc.LoadHtml(parseStr);
             HtmlAgilityPack.HtmlNodeCollection nodeCol = null;
@@ -109,7 +120,6 @@ namespace WindowsFormsApplication1
                     personalData temp = new personalData();
                     temp.name = node.InnerText;
                     dataList.Add(temp);
-                    //showFriendList.Text += node.InnerText + "   ";
                     ++cnt;
                 }
                 setForm.showFriendList.Text += cnt.ToString()+Environment.NewLine;
@@ -120,7 +130,6 @@ namespace WindowsFormsApplication1
                     string hrefString = "";
                     hrefString = node.GetAttributeValue("href", "").ToString();
                     changeData(dataList, cnt, hrefString);
-                    //parsedCode.Text +=  hrefString + "   ";
                     ++cnt;
                 }
                 setForm.parsedCode.Text += cnt.ToString();
@@ -163,6 +172,10 @@ namespace WindowsFormsApplication1
             personalData data = temp[index];
             data.href = value;
             temp[index] = data;
+        }
+        public List<personalData> getList()
+        {
+            return dataList;
         }
     }
     //public class temp
