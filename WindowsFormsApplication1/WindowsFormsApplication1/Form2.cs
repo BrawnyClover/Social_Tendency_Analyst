@@ -46,7 +46,7 @@ namespace WindowsFormsApplication1
             };
         
             this.Controls.Add(browser);
-        }
+        } // CEFsharp브라우저 initialize
         public Form2(string url, Form1 _form)
         {
             InitializeComponent();
@@ -68,18 +68,18 @@ namespace WindowsFormsApplication1
                 SendKeys.Send(passwd[i].ToString());
             }
             SendKeys.Send("{ENTER}");
-        }
+        }// 자동 로그인 메소드
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e) // '실행하기' 버튼 이벤트
         {
             string htmlCode="";
             gathering Gatherer = new gathering(frm,this);
             htmlCode=Gatherer.parseHtml("https://m.facebook.com/profile.php?v=friends&ref=bookmarks");
             handling hand = new handling(frm,htmlCode);
             frm.parsedCode.Text = "";
-            hand.parseTextFunc("//body/div/div/div/div/div/div/div/div/div");
-            this.dataList = hand.getList();
-            frm.loaded.Text = Gatherer.parseHtml("https://www.facebook.com" + dataList[0].href + "&sk=likes");
+            hand.getFriendsData(); // 친구 정보 파싱하기
+            this.dataList = hand.getList(); // 정보 리스트 가져오기
+            hand.getLikesData(); //좋아요 정보 파싱하기
         }
 
         private void showDevTools_Click(object sender, EventArgs e)

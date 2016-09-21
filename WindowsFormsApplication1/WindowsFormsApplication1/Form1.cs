@@ -23,13 +23,13 @@ namespace WindowsFormsApplication1
             InitializeComponent();
         }
 
-        private void navigator_Click(object sender, EventArgs e)
+        private void navigator_Click(object sender, EventArgs e) // 실행 시작 버튼 이벤트
         {
-            Form2 form = new Form2(urlString.Text, this);
+            Form2 form = new Form2(urlString.Text, this); // url로 이동
             form.Owner = this;
             form.Show();
-            form.setId(idText.Text);
-            form.setpswd(pswdText.Text);
+            form.setId(idText.Text); // id 정보 전달
+            form.setpswd(pswdText.Text); // password 정보 전달
         }
         /*private void copyBtn_Click(object sender, EventArgs e)
 {
