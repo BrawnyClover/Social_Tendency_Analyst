@@ -35,6 +35,7 @@
             this.parsedCode = new System.Windows.Forms.TextBox();
             this.showFriendList = new System.Windows.Forms.TextBox();
             this.loaded = new System.Windows.Forms.TextBox();
+            this.pageNameText = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // urlString
@@ -74,7 +75,7 @@
             // 
             // parsedCode
             // 
-            this.parsedCode.Location = new System.Drawing.Point(37, 114);
+            this.parsedCode.Location = new System.Drawing.Point(37, 115);
             this.parsedCode.Multiline = true;
             this.parsedCode.Name = "parsedCode";
             this.parsedCode.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -99,11 +100,21 @@
             this.loaded.Size = new System.Drawing.Size(576, 239);
             this.loaded.TabIndex = 15;
             // 
+            // pageNameText
+            // 
+            this.pageNameText.Location = new System.Drawing.Point(619, 268);
+            this.pageNameText.Multiline = true;
+            this.pageNameText.Name = "pageNameText";
+            this.pageNameText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.pageNameText.Size = new System.Drawing.Size(504, 238);
+            this.pageNameText.TabIndex = 16;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1153, 532);
+            this.Controls.Add(this.pageNameText);
             this.Controls.Add(this.loaded);
             this.Controls.Add(this.showFriendList);
             this.Controls.Add(this.parsedCode);
@@ -126,6 +137,7 @@
         public System.Windows.Forms.TextBox parsedCode;
         public System.Windows.Forms.TextBox showFriendList;
         public System.Windows.Forms.TextBox loaded;
+        public System.Windows.Forms.TextBox pageNameText;
     }
 }
 

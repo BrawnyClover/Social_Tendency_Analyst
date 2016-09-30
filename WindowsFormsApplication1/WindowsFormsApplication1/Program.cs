@@ -27,6 +27,13 @@ namespace WindowsFormsApplication1
         public string name;
         public string href;
     }
+    
+    public struct pageData
+    {
+        public string name;
+        public string pageClass;
+    }
+
     public class gathering // html코드를 가져오기
     {
         Form1 form1;
@@ -38,7 +45,8 @@ namespace WindowsFormsApplication1
             this.form1 = form1;
             this.form2 = form2;
         }
-        public string parseHtml(string url)// html코드 가져오는 메소드
+
+        public string getHtml(string url)// html코드 가져오는 메소드
         {
             form2.browser.Load(url);
             Stopwatch sw = new Stopwatch();// 시간 측정 도구
@@ -78,24 +86,28 @@ namespace WindowsFormsApplication1
             htmlCode = form2.browser.GetSourceAsync().Result;// 가져온 코드를 string형으로 반환
             return htmlCode;
         }
-        private void ScrollToBottom()
+        
+        private void ScrollToBottom()     
         {
             // MOST IMP : processes all windows messages queue
             Application.DoEvents();
+            form2.browser.Focus();
             SendKeys.Send(" ");
         }
     }
     public class handling // 가져온 html코드를 파싱하고 정리
     {
-        Form1 setForm;
+        Dictionary<String, int> dictionary = new Dictionary<string, int>();
+
+        Form1 form1;
+        Form2 form2;
         int cnt = 0;
-        string htmlCode;
-        List<personalData> dataList = new List<personalData>(); // 이름, href를 저장할 구조체 리스트
-        
-        public handling(Form1 form, string htmlCode)
+        List<personalData> dataList = new List<personalData>(); // 친구 이름, href를 저장할 구조체 리스트
+        List<pageData> pageInfoList = new List<pageData>(); // 페이지 이름, 분류를 저장할 구조체 리스트
+        public handling(Form1 form1, Form2 form2)
         {
-            setForm = form;
-            this.htmlCode = htmlCode;
+            this.form1 = form1;
+            this.form2 = form2;
         }
 
         public void getFriendsName(HtmlAgilityPack.HtmlNodeCollection nodeCol)// 친구 이름 파싱하기
@@ -113,7 +125,7 @@ namespace WindowsFormsApplication1
             }
             catch (NullReferenceException)
             {
-                setForm.parsedCode.Text = "nothing found!";
+                form1.parsedCode.Text = "nothing found!";
             }
         }
 
@@ -132,34 +144,90 @@ namespace WindowsFormsApplication1
             }
             catch (NullReferenceException)
             {
-                setForm.parsedCode.Text = "nothing found!";
+                form1.parsedCode.Text = "nothing found!";
+            }
+        }
+
+        public void getPageName(HtmlAgilityPack.HtmlNodeCollection nodeCol)
+        {
+            cnt = 0;
+            try
+            {
+                foreach (HtmlAgilityPack.HtmlNode node in nodeCol)
+                {
+                    pageData temp = new pageData();// 임시 pageData객체 생성
+                    temp.name = node.InnerText;
+                    pageInfoList.Add(temp);// pageInfoList에 객체 추가
+                    ++cnt;
+                }
+            }
+            catch (NullReferenceException)
+            {
+                form1.loaded.Text += "nothing found!";
+            }
+        }
+
+        public void getPageClass(HtmlAgilityPack.HtmlNodeCollection nodeCol)
+        {
+            cnt = 0;
+            string classInfo = "";
+            try
+            {
+                foreach (HtmlAgilityPack.HtmlNode node in nodeCol)
+                {
+                    classInfo = node.InnerText;
+                    if (dictionary.ContainsKey(classInfo))
+                    {
+                        dictionary[classInfo] += 1;
+                    }
+                    else
+                    {
+                        dictionary.Add(classInfo, 1);
+                    }
+                    changeData(pageInfoList, cnt, classInfo);//classInfoList의 인덱스가 cnt인 객체에 page Class 문자열 추가
+                    ++cnt;
+                }
+            }
+            catch (NullReferenceException)
+            {
+                form1.loaded.Text += "nothing found?";
             }
         }
         
-        public void getFriendsData()// 친구 정보를 가져오는 중심 메소드
+        public void getFriendsData(string htmlCode)// 친구 정보를 가져오는 중심 메소드
         {
             string str = "//body/div/div/div/div/div/div/div/div/div";
             HtmlAgilityPack.HtmlNodeCollection hrefCol = null;
             HtmlAgilityPack.HtmlNodeCollection nameCol = null;
-            hrefCol = parseTextFunc(str + "/h3/a[@href]" + "|" + str + "/h1/a[@href]");// href링크를 가져오기
-            nameCol = parseTextFunc(str + "/h3" + "|" + str + "/h1");// 이름 가져오기
+            hrefCol = parseTextFunc(str + "/h3/a[@href]" + "|" + str + "/h1/a[@href]", htmlCode);// href링크를 가져오기
+            nameCol = parseTextFunc(str + "/h3" + "|" + str + "/h1", htmlCode);// 이름 가져오기
 
             getFriendsName(nameCol);// dataList에 이름 추가
             getHrefLink(hrefCol);// dataList에 href링크 추가
             output(dataList);// 일단 dataList출력
         }
 
-        public void getLikesData()// 친구 정보를 바탕으로 '좋아요를 누른 페이지' 정보 가져오는 중심 메소드
+        public void getLikesData(string url)// 친구 정보를 바탕으로 '좋아요를 누른 페이지' 정보 가져오는 중심 메소드
         {
-            //parseHtml("https://www.facebook.com" + dataList[0].href + "&sk=likes");
-
+            string tempCode = "";
+            
+            string tag = "//body/div[@class='_li']/div/div/div/div[@id='mainContainer']/div[@id='contentCol']/div[@id='contentArea']/div[@class='_5h60']/div/div/div/div/div[@class='_3i9']/div/ul/li/div[@class='_3owb']/div/div/div/div";
+            gathering gather = new gathering(form1, form2);
+            tempCode = gather.getHtml(url);
+            HtmlAgilityPack.HtmlNodeCollection nameCol = null;
+            HtmlAgilityPack.HtmlNodeCollection classCol = null;
+            nameCol = parseTextFunc(tag + "/div[@class='fsl fwb fcb']", tempCode);
+            classCol = parseTextFunc(tag + "/div[@class='fsm fwn fcg']", tempCode);
+            getPageName(nameCol);
+            getPageClass(classCol);
+            //output(pageInfoList);
+            output();
         }
 
-        public HtmlAgilityPack.HtmlNodeCollection parseTextFunc(string str)// tag가 str인 요소 파싱하는 메소드
+        public HtmlAgilityPack.HtmlNodeCollection parseTextFunc(string str, string htmlCode)// tag가 str인 요소 파싱하는 메소드
         {
-            string parseStr = htmlCode;
             HtmlAgilityPack.HtmlDocument mydoc = new HtmlAgilityPack.HtmlDocument();
-            mydoc.LoadHtml(parseStr);
+            mydoc.LoadHtml(htmlCode);
             HtmlAgilityPack.HtmlNodeCollection nodeCol = null;
             try
             {
@@ -178,24 +246,41 @@ namespace WindowsFormsApplication1
             {
                 try
                 {
-                    setForm.parsedCode.Text += data.href;
-                    setForm.parsedCode.AppendText(Environment.NewLine);
+                    form1.parsedCode.Text += data.href;
+                    form1.parsedCode.AppendText(Environment.NewLine);
                 }
                 catch (NullReferenceException)
                 {
-                    setForm.parsedCode.Text += "empty value";
-                    setForm.parsedCode.AppendText(Environment.NewLine);
+                    form1.parsedCode.Text += "empty value";
+                    form1.parsedCode.AppendText(Environment.NewLine);
                 }
                 try
                 {
-                    setForm.showFriendList.Text += data.name+"  ";
-                    setForm.parsedCode.AppendText(Environment.NewLine);
+                    form1.showFriendList.Text += data.name+"  ";
+                    form1.parsedCode.AppendText(Environment.NewLine);
                 }
                 catch (NullReferenceException)
                 {
-                    setForm.showFriendList.Text += "empty value";
-                    setForm.parsedCode.AppendText(Environment.NewLine);
+                    form1.showFriendList.Text += "empty value";
+                    form1.parsedCode.AppendText(Environment.NewLine);
                 }
+            }
+        }
+
+        void output(List<pageData> pageInfoData)
+        {
+            foreach (pageData temp in pageInfoData)
+            {
+                form1.pageNameText.Text += temp.name +' ';
+                form1.loaded.Text += temp.pageClass + ' ';
+            }
+        }
+
+        void output()
+        {
+            foreach(var info in dictionary)
+            {
+                form1.loaded.Text += info.Key.ToString() + " : " + info.Value.ToString()+"  ";
             }
         }
 
@@ -206,6 +291,12 @@ namespace WindowsFormsApplication1
             temp[index] = data;
         }// personalData에 href정보 추가 메소드
 
+        void changeData(List<pageData> temp, int index, string value)
+        {
+            pageData data = temp[index];
+            data.pageClass = value;
+            temp[index] = data;
+        }
         public List<personalData> getList()
         {
             return dataList;

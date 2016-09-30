@@ -25,6 +25,7 @@ namespace WindowsFormsApplication1
 
         private void navigator_Click(object sender, EventArgs e) // 실행 시작 버튼 이벤트
         {
+            loaded.Focus();
             Form2 form = new Form2(urlString.Text, this); // url로 이동
             form.Owner = this;
             form.Show();

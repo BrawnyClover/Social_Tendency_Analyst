@@ -47,6 +47,7 @@ namespace WindowsFormsApplication1
         
             this.Controls.Add(browser);
         } // CEFsharp브라우저 initialize
+        
         public Form2(string url, Form1 _form)
         {
             InitializeComponent();
@@ -74,12 +75,16 @@ namespace WindowsFormsApplication1
         {
             string htmlCode="";
             gathering Gatherer = new gathering(frm,this);
-            htmlCode=Gatherer.parseHtml("https://m.facebook.com/profile.php?v=friends&ref=bookmarks");
-            handling hand = new handling(frm,htmlCode);
+            htmlCode=Gatherer.getHtml("https://m.facebook.com/profile.php?v=friends&ref=bookmarks");
+            handling hand = new handling(frm,this);
             frm.parsedCode.Text = "";
-            hand.getFriendsData(); // 친구 정보 파싱하기
+            hand.getFriendsData(htmlCode); // 친구 정보 파싱하기
             this.dataList = hand.getList(); // 정보 리스트 가져오기
-            hand.getLikesData(); //좋아요 정보 파싱하기
+
+            //foreach (personalData data in dataList)
+            //{
+                hand.getLikesData("https://facebook.com"+dataList[0].href+"&sk=likes"); // 좋아요 정보 파싱하기
+            //}
         }
 
         private void showDevTools_Click(object sender, EventArgs e)
