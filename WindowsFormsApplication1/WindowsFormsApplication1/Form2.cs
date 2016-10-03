@@ -58,7 +58,7 @@ namespace WindowsFormsApplication1
             frm = _form;
         }
 
-        public void login()
+        public void login() 
         {
             for (int i = 0; i < 5; i++) { SendKeys.Send("{tab}"); }
             for(int i=0; i<id.Length; i++)
