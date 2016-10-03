@@ -25,17 +25,25 @@ namespace WindowsFormsApplication1
 
         private void navigator_Click(object sender, EventArgs e) // 실행 시작 버튼 이벤트
         {
-            loaded.Focus();
+            taskText.Focus();
             Form2 form = new Form2(urlString.Text, this); // url로 이동
             form.Owner = this;
+            form.StartPosition = FormStartPosition.Manual;
+            form.Location = new Point(0, 0);
             form.Show();
             form.setId(idText.Text); // id 정보 전달
             form.setpswd(pswdText.Text); // password 정보 전달
         }
+
+        private void taskText_TextChanged(object sender, EventArgs e)
+        {
+            taskText.SelectionStart = taskText.Text.Length;
+            taskText.ScrollToCaret();
+        }
         /*private void copyBtn_Click(object sender, EventArgs e)
 {
-   sourceText.SelectAll();
-   sourceText.Copy();
+sourceText.SelectAll();
+sourceText.Copy();
 }*/
     }
 }

@@ -32,10 +32,8 @@
             this.navigator = new System.Windows.Forms.Button();
             this.idText = new System.Windows.Forms.TextBox();
             this.pswdText = new System.Windows.Forms.TextBox();
-            this.parsedCode = new System.Windows.Forms.TextBox();
-            this.showFriendList = new System.Windows.Forms.TextBox();
-            this.loaded = new System.Windows.Forms.TextBox();
-            this.pageNameText = new System.Windows.Forms.TextBox();
+            this.taskText = new System.Windows.Forms.TextBox();
+            this.dataShow = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // urlString
@@ -73,51 +71,33 @@
             this.pswdText.Text = "adgjmadgjmadgjm";
             this.pswdText.UseSystemPasswordChar = true;
             // 
-            // parsedCode
+            // taskText
             // 
-            this.parsedCode.Location = new System.Drawing.Point(37, 115);
-            this.parsedCode.Multiline = true;
-            this.parsedCode.Name = "parsedCode";
-            this.parsedCode.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.parsedCode.Size = new System.Drawing.Size(576, 148);
-            this.parsedCode.TabIndex = 10;
+            this.taskText.Location = new System.Drawing.Point(37, 122);
+            this.taskText.Multiline = true;
+            this.taskText.Name = "taskText";
+            this.taskText.ReadOnly = true;
+            this.taskText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.taskText.Size = new System.Drawing.Size(354, 385);
+            this.taskText.TabIndex = 15;
+            this.taskText.TextChanged += new System.EventHandler(this.taskText_TextChanged);
             // 
-            // showFriendList
+            // dataShow
             // 
-            this.showFriendList.Location = new System.Drawing.Point(619, 114);
-            this.showFriendList.Multiline = true;
-            this.showFriendList.Name = "showFriendList";
-            this.showFriendList.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.showFriendList.Size = new System.Drawing.Size(505, 148);
-            this.showFriendList.TabIndex = 14;
-            // 
-            // loaded
-            // 
-            this.loaded.Location = new System.Drawing.Point(37, 268);
-            this.loaded.Multiline = true;
-            this.loaded.Name = "loaded";
-            this.loaded.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.loaded.Size = new System.Drawing.Size(576, 239);
-            this.loaded.TabIndex = 15;
-            // 
-            // pageNameText
-            // 
-            this.pageNameText.Location = new System.Drawing.Point(619, 268);
-            this.pageNameText.Multiline = true;
-            this.pageNameText.Name = "pageNameText";
-            this.pageNameText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.pageNameText.Size = new System.Drawing.Size(504, 238);
-            this.pageNameText.TabIndex = 16;
+            this.dataShow.Location = new System.Drawing.Point(397, 122);
+            this.dataShow.Multiline = true;
+            this.dataShow.Name = "dataShow";
+            this.dataShow.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.dataShow.Size = new System.Drawing.Size(726, 384);
+            this.dataShow.TabIndex = 16;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1153, 532);
-            this.Controls.Add(this.pageNameText);
-            this.Controls.Add(this.loaded);
-            this.Controls.Add(this.showFriendList);
-            this.Controls.Add(this.parsedCode);
+            this.Controls.Add(this.dataShow);
+            this.Controls.Add(this.taskText);
             this.Controls.Add(this.pswdText);
             this.Controls.Add(this.idText);
             this.Controls.Add(this.navigator);
@@ -134,10 +114,8 @@
         private System.Windows.Forms.Button navigator;
         private System.Windows.Forms.TextBox idText;
         private System.Windows.Forms.TextBox pswdText;
-        public System.Windows.Forms.TextBox parsedCode;
-        public System.Windows.Forms.TextBox showFriendList;
-        public System.Windows.Forms.TextBox loaded;
-        public System.Windows.Forms.TextBox pageNameText;
+        public System.Windows.Forms.TextBox taskText;
+        public System.Windows.Forms.TextBox dataShow;
     }
 }
 

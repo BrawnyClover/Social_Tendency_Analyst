@@ -80,9 +80,10 @@ namespace WindowsFormsApplication1
             sw.Start();// 측정 시작
             while (true)
             {
-                if (sw.ElapsedMilliseconds > 8000) break;
+                if (sw.ElapsedMilliseconds > 10000) break;
                 ScrollToBottom();// 스크롤 아래로 내리기
             }
+               
             htmlCode = form2.browser.GetSourceAsync().Result;// 가져온 코드를 string형으로 반환
             return htmlCode;
         }
@@ -125,7 +126,7 @@ namespace WindowsFormsApplication1
             }
             catch (NullReferenceException)
             {
-                form1.parsedCode.Text = "nothing found!";
+               // form1.parsedCode.Text = "nothing found!";
             }
         }
 
@@ -144,7 +145,7 @@ namespace WindowsFormsApplication1
             }
             catch (NullReferenceException)
             {
-                form1.parsedCode.Text = "nothing found!";
+                //form1.parsedCode.Text = "nothing found!";
             }
         }
 
@@ -163,7 +164,7 @@ namespace WindowsFormsApplication1
             }
             catch (NullReferenceException)
             {
-                form1.loaded.Text += "nothing found!";
+                form1.taskText.Text += "nothing found!";
             }
         }
 
@@ -190,7 +191,7 @@ namespace WindowsFormsApplication1
             }
             catch (NullReferenceException)
             {
-                form1.loaded.Text += "nothing found?";
+                form1.taskText.Text += "nothing found?";
             }
         }
         
@@ -204,13 +205,20 @@ namespace WindowsFormsApplication1
 
             getFriendsName(nameCol);// dataList에 이름 추가
             getHrefLink(hrefCol);// dataList에 href링크 추가
-            output(dataList);// 일단 dataList출력
+
+            form1.taskText.Text += "Complete gathering friend list\r\n\r\n";
+            Application.DoEvents();
+            //output(dataList);// 일단 dataList출력
         }
 
-        public void getLikesData(string url)// 친구 정보를 바탕으로 '좋아요를 누른 페이지' 정보 가져오는 중심 메소드
+        public void getLikesData(string url,string name, int index, int size)// 친구 정보를 바탕으로 '좋아요를 누른 페이지' 정보 가져오는 중심 메소드
         {
             string tempCode = "";
-            
+
+            form1.taskText.Text += "Entering page class data gathering process for friend" + name + "...\r\n";
+            form1.taskText.Text += index.ToString() + "th friend of" + size.ToString() + "friends" + "\r\n\r\n";
+            Application.DoEvents();
+
             string tag = "//body/div[@class='_li']/div/div/div/div[@id='mainContainer']/div[@id='contentCol']/div[@id='contentArea']/div[@class='_5h60']/div/div/div/div/div[@class='_3i9']/div/ul/li/div[@class='_3owb']/div/div/div/div";
             gathering gather = new gathering(form1, form2);
             tempCode = gather.getHtml(url);
@@ -221,8 +229,11 @@ namespace WindowsFormsApplication1
             getPageName(nameCol);
             getPageClass(classCol);
             //output(pageInfoList);
+
+            form1.taskText.Text += "Complete gathering page Class data\r\n";            
             output();
-        }
+            form1.taskText.Text += "the number of gathered item = " + dictionary.Count.ToString()+"\r\n\r\n";
+        }   
 
         public HtmlAgilityPack.HtmlNodeCollection parseTextFunc(string str, string htmlCode)// tag가 str인 요소 파싱하는 메소드
         {
@@ -240,7 +251,7 @@ namespace WindowsFormsApplication1
             return nodeCol;
         }
 
-        void output(List<personalData> dataList)
+        /*void output(List<personalData> dataList)
         {
             foreach (personalData data in dataList)
             {
@@ -265,22 +276,23 @@ namespace WindowsFormsApplication1
                     form1.parsedCode.AppendText(Environment.NewLine);
                 }
             }
-        }
+        }*/
 
         void output(List<pageData> pageInfoData)
         {
             foreach (pageData temp in pageInfoData)
             {
-                form1.pageNameText.Text += temp.name +' ';
-                form1.loaded.Text += temp.pageClass + ' ';
+                form1.dataShow.Text += temp.name +' ';
+                form1.taskText.Text += temp.pageClass + ' ';
             }
         }
 
         void output()
         {
+            form1.dataShow.Text = "";
             foreach(var info in dictionary)
             {
-                form1.loaded.Text += info.Key.ToString() + " : " + info.Value.ToString()+"  ";
+                form1.dataShow.Text += info.Key.ToString() + " : " + info.Value.ToString()+"\r\n";
             }
         }
 
