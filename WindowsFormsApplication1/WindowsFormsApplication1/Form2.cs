@@ -32,7 +32,9 @@ namespace WindowsFormsApplication1
             this.passwd = passwd;
         }
         public ChromiumWebBrowser browser;
-        
+        private BackgroundWorker worker;
+        public TimeSpan expectedTime = new TimeSpan(0,0,10);
+
         public void InitBrowser(string url)
         {
             this.url = url;
@@ -56,11 +58,23 @@ namespace WindowsFormsApplication1
             InitBrowser(url);
             var settings = new CefSettings();
             frm = _form;
+            worker = new BackgroundWorker();
+            worker.WorkerReportsProgress = false;
+            worker.WorkerSupportsCancellation = true;
+            //worker.DoWork += new DoWorkEventHandler(dowork);
+            //worker.RunWorkerCompleted += Worker_RunWorkerCompleted;;
+            
+        }
+
+        private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         public void login() 
         {
-            for (int i = 0; i < 5; i++) { SendKeys.Send("{tab}"); }
+            browser.Focus();
+            for (int i = 0; i < 3; i++) { SendKeys.Send("{tab}"); }
             for(int i=0; i<id.Length; i++)
             {
                 SendKeys.Send(id[i].ToString());
@@ -73,28 +87,37 @@ namespace WindowsFormsApplication1
             SendKeys.Send("{ENTER}");
         }// 자동 로그인 메소드
 
-        private void button1_Click(object sender, EventArgs e) // '실행하기' 버튼 이벤트
+        private void dowork(/*object sender, DoWorkEventArgs e*/)
         {
             frm.taskText.Text += "Entering friends list gathering process...\r\n\r\n";
             Application.DoEvents();
 
-            string htmlCode="";
-            gathering Gatherer = new gathering(frm,this);
-            htmlCode=Gatherer.getHtml("https://m.facebook.com/profile.php?v=friends&ref=bookmarks");
-            handling hand = new handling(frm,this);
+            string htmlCode = "";
+            gathering Gatherer = new gathering(frm, this);
+            htmlCode = Gatherer.getHtml("https://m.facebook.com/profile.php?v=friends&ref=bookmarks");
+            handling hand = new handling(frm, this);
             //frm.parsedCode.Text = "";
             hand.getFriendsData(htmlCode); // 친구 정보 파싱하기
             this.dataList = hand.getList(); // 정보 리스트 가져오기
 
-            int tempCnt = 0;
+            expectedTime = new TimeSpan(0,0,dataList.Count * 10 + 10);
+            expectedTimer.Text = expectedTime.ToString();
+            
+            int tempCnt = 1;
 
             foreach (personalData data in dataList)
             {
-                //if (tempCnt > 3) break;
-                ++tempCnt;
-                hand.getLikesData("https://facebook.com"+data.href+"&sk=likes",data.name,tempCnt,dataList.Count); // 좋아요 정보 파싱하기
-                
+                //if (tempCnt > 2) break;
+                //++tempCnt;
+                browser.Focus();
+                hand.getLikesData("https://facebook.com" + data.href + "&sk=likes", data.name, tempCnt, dataList.Count); // 좋아요 정보 파싱
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e) // '실행하기' 버튼 이벤트
+        {
+            dowork();
+            this.Close();
         }
 
         private void showDevTools_Click(object sender, EventArgs e)
@@ -109,16 +132,10 @@ namespace WindowsFormsApplication1
 
         private void button3_Click(object sender, EventArgs e)
         {
-            isOkay = !isOkay;
-            while (isOkay)
-            {
-                System.Threading.Thread.Sleep(1);
-            }
-            //this.Close();
-            /*Process.GetCurrentProcess().Kill();
+            this.Close();
+            Process.GetCurrentProcess().Kill();
             Application.ExitThread();
             Environment.Exit(0);
-            */
         }
     }
 }

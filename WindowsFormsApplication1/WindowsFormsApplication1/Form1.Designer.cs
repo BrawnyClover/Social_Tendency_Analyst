@@ -34,6 +34,7 @@
             this.pswdText = new System.Windows.Forms.TextBox();
             this.taskText = new System.Windows.Forms.TextBox();
             this.dataShow = new System.Windows.Forms.TextBox();
+            this.showRes = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // urlString
@@ -88,14 +89,23 @@
             this.dataShow.Multiline = true;
             this.dataShow.Name = "dataShow";
             this.dataShow.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dataShow.Size = new System.Drawing.Size(726, 384);
+            this.dataShow.Size = new System.Drawing.Size(360, 384);
             this.dataShow.TabIndex = 16;
+            // 
+            // showRes
+            // 
+            this.showRes.Location = new System.Drawing.Point(772, 122);
+            this.showRes.Multiline = true;
+            this.showRes.Name = "showRes";
+            this.showRes.Size = new System.Drawing.Size(344, 385);
+            this.showRes.TabIndex = 17;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1153, 532);
+            this.Controls.Add(this.showRes);
             this.Controls.Add(this.dataShow);
             this.Controls.Add(this.taskText);
             this.Controls.Add(this.pswdText);
@@ -116,6 +126,7 @@
         private System.Windows.Forms.TextBox pswdText;
         public System.Windows.Forms.TextBox taskText;
         public System.Windows.Forms.TextBox dataShow;
+        public System.Windows.Forms.TextBox showRes;
     }
 }
 

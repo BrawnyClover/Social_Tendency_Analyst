@@ -1,0 +1,46 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Nwagon demo</title>
+
+	<style>
+		*{margin:0;padding:0;}
+		div{padding:0px; overflow: hidden; height: auto;}
+		.hgroup{padding:20px;background-color:#e9e9e9;}
+		.hgroup h1{font-family:Tahoma;}
+		.hgroup p{margin:10px 0;font-size:10px}
+		h2{margin:0;padding:20px;border:1px solid #000;background-color:#f9f9f9;border-width:1px 0;font-family:Tahoma;}
+	</style>
+
+	<link rel='stylesheet' href='Nwagon.css' type='text/css'>
+	<script src='Nwagon.js'></script>
+
+</head>
+<body>
+	
+	<h2>TEST</h2>
+	<h2>Radar Chart with dimmed background</h2>
+	<div id="chart12"></div>
+	<script>
+
+		var options = {
+			'legend':{
+				names: [¡Ú],
+				hrefs: []
+					},
+			'dataset': {
+				title: 'Web accessibility status',
+				values: [[¡Ú]], 
+				bgColor: '#f9f9f9',
+				fgColor: '#cc79a7'
+			},
+			'chartDiv': 'chart12',
+			'chartType': 'radar',
+			'chartSize': {width:600, height:300}
+		};
+
+		Nwagon.chart(options);
+
+	</script>
+	</body>
+</html>

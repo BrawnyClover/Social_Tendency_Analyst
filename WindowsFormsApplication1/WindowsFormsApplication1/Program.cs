@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using CefSharp;
 using CefSharp.WinForms;
+using System.IO;
 
 namespace WindowsFormsApplication1
 {
@@ -80,10 +81,14 @@ namespace WindowsFormsApplication1
             sw.Start();// 측정 시작
             while (true)
             {
+                TimeSpan lim = new TimeSpan(0, 0, 10);
+                form2.smallTimer.Text = (lim-sw.Elapsed).ToString();
+                form2.expectedTimer.Text = (form2.expectedTime - sw.Elapsed).ToString();
                 if (sw.ElapsedMilliseconds > 10000) break;
+                
                 ScrollToBottom();// 스크롤 아래로 내리기
             }
-               
+            form2.expectedTime = form2.expectedTime - sw.Elapsed;
             htmlCode = form2.browser.GetSourceAsync().Result;// 가져온 코드를 string형으로 반환
             return htmlCode;
         }
@@ -208,7 +213,6 @@ namespace WindowsFormsApplication1
 
             form1.taskText.Text += "Complete gathering friend list\r\n\r\n";
             Application.DoEvents();
-            //output(dataList);// 일단 dataList출력
         }
 
         public void getLikesData(string url,string name, int index, int size)// 친구 정보를 바탕으로 '좋아요를 누른 페이지' 정보 가져오는 중심 메소드
@@ -233,6 +237,8 @@ namespace WindowsFormsApplication1
             form1.taskText.Text += "Complete gathering page Class data\r\n";            
             output();
             form1.taskText.Text += "the number of gathered item = " + dictionary.Count.ToString()+"\r\n\r\n";
+
+            dataOut();
         }   
 
         public HtmlAgilityPack.HtmlNodeCollection parseTextFunc(string str, string htmlCode)// tag가 str인 요소 파싱하는 메소드
@@ -313,14 +319,29 @@ namespace WindowsFormsApplication1
         {
             return dataList;
         }// dataList를 외부로 반출
+    
+        public void dataOut()
+        {
+            string path = @"C:\\Users\\sonbi\\Desktop\\data.json";
+            try
+            {
+                FileStream temp = File.Create(path);
+                temp.Close();
+            }
+            catch (Exception) { }
+            StreamWriter sw = new StreamWriter(path);
+            
+            string temp1 = MyDictionaryToJson();
+            form1.showRes.Text = temp1;
+            sw.WriteLine(temp1);
+            sw.Close();
+        }
+        string MyDictionaryToJson()
+        {
+            var entries = dictionary.Select(d =>
+                string.Format("\"{0}\": [{1}]", d.Key, string.Join(",", d.Value)));
+            return "{" + string.Join(",", entries) + "}";
+        }
     }
-    //public class temp
-    //{
-    //    Form1 form = new Form1();
-    //    public void tex()
-    //    {
-    //        form.parsedCode.Text += "kfdajsljf;ladsj";
-    //    }
-    //}
 }
 
