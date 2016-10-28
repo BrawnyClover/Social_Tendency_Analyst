@@ -35,6 +35,9 @@
             this.taskText = new System.Windows.Forms.TextBox();
             this.dataShow = new System.Windows.Forms.TextBox();
             this.showRes = new System.Windows.Forms.TextBox();
+            this.graphCreate = new System.Windows.Forms.Button();
+            this.BrowseButton = new System.Windows.Forms.Button();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.SuspendLayout();
             // 
             // urlString
@@ -97,14 +100,41 @@
             this.showRes.Location = new System.Drawing.Point(772, 122);
             this.showRes.Multiline = true;
             this.showRes.Name = "showRes";
+            this.showRes.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.showRes.Size = new System.Drawing.Size(344, 385);
             this.showRes.TabIndex = 17;
+            // 
+            // graphCreate
+            // 
+            this.graphCreate.Location = new System.Drawing.Point(751, 46);
+            this.graphCreate.Name = "graphCreate";
+            this.graphCreate.Size = new System.Drawing.Size(89, 28);
+            this.graphCreate.TabIndex = 18;
+            this.graphCreate.Text = "Graph";
+            this.graphCreate.UseVisualStyleBackColor = true;
+            this.graphCreate.Click += new System.EventHandler(this.graphCreate_Click);
+            // 
+            // BrowseButton
+            // 
+            this.BrowseButton.Location = new System.Drawing.Point(846, 46);
+            this.BrowseButton.Name = "BrowseButton";
+            this.BrowseButton.Size = new System.Drawing.Size(83, 28);
+            this.BrowseButton.TabIndex = 19;
+            this.BrowseButton.Text = "Browse";
+            this.BrowseButton.UseVisualStyleBackColor = true;
+            this.BrowseButton.Click += new System.EventHandler(this.BrowseButton_Click);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1153, 532);
+            this.Controls.Add(this.BrowseButton);
+            this.Controls.Add(this.graphCreate);
             this.Controls.Add(this.showRes);
             this.Controls.Add(this.dataShow);
             this.Controls.Add(this.taskText);
@@ -127,6 +157,9 @@
         public System.Windows.Forms.TextBox taskText;
         public System.Windows.Forms.TextBox dataShow;
         public System.Windows.Forms.TextBox showRes;
+        private System.Windows.Forms.Button graphCreate;
+        private System.Windows.Forms.Button BrowseButton;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }
 

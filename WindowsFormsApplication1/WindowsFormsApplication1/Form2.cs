@@ -9,9 +9,14 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using CefSharp;
 using CefSharp.WinForms;
-
 using System.Diagnostics;
 
+using Microsoft.Scripting.Hosting;
+
+using IronPython;
+using IronPython.Hosting;
+using IronPython.Runtime;
+using IronPython.Modules;
 
 namespace WindowsFormsApplication1
 {
@@ -100,15 +105,15 @@ namespace WindowsFormsApplication1
             hand.getFriendsData(htmlCode); // 친구 정보 파싱하기
             this.dataList = hand.getList(); // 정보 리스트 가져오기
 
-            expectedTime = new TimeSpan(0,0,dataList.Count * 10 + 10);
+            expectedTime = new TimeSpan(0,0,dataList.Count * 15 + 15);
             expectedTimer.Text = expectedTime.ToString();
             
             int tempCnt = 1;
 
             foreach (personalData data in dataList)
             {
-                //if (tempCnt > 2) break;
-                //++tempCnt;
+                if (tempCnt > 2) break;
+                ++tempCnt;
                 browser.Focus();
                 hand.getLikesData("https://facebook.com" + data.href + "&sk=likes", data.name, tempCnt, dataList.Count); // 좋아요 정보 파싱
             }
@@ -136,6 +141,11 @@ namespace WindowsFormsApplication1
             Process.GetCurrentProcess().Kill();
             Application.ExitThread();
             Environment.Exit(0);
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

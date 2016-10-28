@@ -81,10 +81,10 @@ namespace WindowsFormsApplication1
             sw.Start();// 측정 시작
             while (true)
             {
-                TimeSpan lim = new TimeSpan(0, 0, 10);
+                TimeSpan lim = new TimeSpan(0, 0, 15);
                 form2.smallTimer.Text = (lim-sw.Elapsed).ToString();
                 form2.expectedTimer.Text = (form2.expectedTime - sw.Elapsed).ToString();
-                if (sw.ElapsedMilliseconds > 10000) break;
+                if (sw.ElapsedMilliseconds > 15000) break;
                 
                 ScrollToBottom();// 스크롤 아래로 내리기
             }
@@ -322,7 +322,7 @@ namespace WindowsFormsApplication1
     
         public void dataOut()
         {
-            string path = @"C:\\Users\\sonbi\\Desktop\\data.json";
+            string path = Application.StartupPath + "//python//data.json"; //@"C:\\Users\\sonbi\\Desktop\\data.json";
             try
             {
                 FileStream temp = File.Create(path);
@@ -340,7 +340,7 @@ namespace WindowsFormsApplication1
         {
             var entries = dictionary.Select(d =>
                 string.Format("\"{0}\": [{1}]", d.Key, string.Join(",", d.Value)));
-            return "{" + string.Join(",", entries) + "}";
+            return "{" + string.Join(",\n", entries) + "}";
         }
     }
 }
