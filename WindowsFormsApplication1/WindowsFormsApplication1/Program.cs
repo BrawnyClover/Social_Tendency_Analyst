@@ -7,6 +7,7 @@ using System.Diagnostics;
 using CefSharp;
 using CefSharp.WinForms;
 using System.IO;
+using System.Text;
 
 namespace WindowsFormsApplication1
 {
@@ -219,8 +220,8 @@ namespace WindowsFormsApplication1
         {
             string tempCode = "";
 
-            form1.taskText.Text += "Entering page class data gathering process for friend" + name + "...\r\n";
-            form1.taskText.Text += index.ToString() + "th friend of" + size.ToString() + "friends" + "\r\n\r\n";
+            form1.taskText.Text += "Entering page class data gathering process for friend " + name + "...\r\n";
+            form1.taskText.Text += index.ToString() + "th friend of " + size.ToString() + " friends" + "\r\n\r\n";
             Application.DoEvents();
 
             string tag = "//body/div[@class='_li']/div/div/div/div[@id='mainContainer']/div[@id='contentCol']/div[@id='contentArea']/div[@class='_5h60']/div/div/div/div/div[@class='_3i9']/div/ul/li/div[@class='_3owb']/div/div/div/div";
@@ -333,8 +334,10 @@ namespace WindowsFormsApplication1
             
             string temp1 = MyDictionaryToJson();
             form1.showRes.Text = temp1;
-            sw.WriteLine(temp1);
+            byte[] encoder = Encoding.UTF8.GetBytes(temp1);
+            sw.WriteLine(Encoding.UTF8.GetString(encoder));
             sw.Close();
+            System.Diagnostics.Process.Start("cmd.exe", "/c "+Application.StartupPath+"//python//python.bat");
         }
         string MyDictionaryToJson()
         {

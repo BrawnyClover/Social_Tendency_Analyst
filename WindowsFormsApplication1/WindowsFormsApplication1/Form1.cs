@@ -26,9 +26,6 @@ namespace WindowsFormsApplication1
         List<int> valueList = new List<int>();
         System.Text.Encoding utf8 = System.Text.Encoding.UTF8;
 
-        static int euckrCodepage = 51949;
-        System.Text.Encoding euckr = System.Text.Encoding.GetEncoding(euckrCodepage);
-
         public Form1()
         {
             InitializeComponent();
@@ -37,7 +34,7 @@ namespace WindowsFormsApplication1
         private void navigator_Click(object sender, EventArgs e) // 실행 시작 버튼 이벤트
         {
             taskText.Focus();
-            Form2 form = new Form2(urlString.Text, this); // url로 이동
+            Form2 form = new Form2("m.facebook.com", this); // url로 이동
             form.Owner = this;
             form.StartPosition = FormStartPosition.Manual;
             form.Location = new Point(0, 0);
@@ -66,7 +63,7 @@ namespace WindowsFormsApplication1
 
             try
             {
-                workbook.SaveToFile("Result.xls");
+                workbook.SaveToFile(Application.StartupPath+"\\results\\Result.xls");
                 taskText.Text += "chart created\r\n";
             }
             catch (IOException)
@@ -85,7 +82,7 @@ namespace WindowsFormsApplication1
             chart.DataRange = sheet.Range["A1:B13"];
             chart.SeriesDataFromRange = false;
             chart.ChartType = ExcelChartType.Radar;
-            chart.ChartTitle = "Social Tendency Analized";
+            chart.ChartTitle = "Social Tendency Analized for " + idText.Text;
             chart.ChartTitleArea.IsBold = true;
             chart.ChartTitleArea.Size = 12;
             chart.PlotArea.Fill.Visible = true;
@@ -159,11 +156,11 @@ namespace WindowsFormsApplication1
                 }
             }
         }
-        /*private void copyBtn_Click(object sender, EventArgs e)
-{
-sourceText.SelectAll();
-sourceText.Copy();
-}*/
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
     

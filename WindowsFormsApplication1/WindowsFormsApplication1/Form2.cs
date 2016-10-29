@@ -108,11 +108,23 @@ namespace WindowsFormsApplication1
             expectedTime = new TimeSpan(0,0,dataList.Count * 15 + 15);
             expectedTimer.Text = expectedTime.ToString();
             
-            int tempCnt = 1;
-
+            int tempCnt = 0;
+            int achieve = dataList.Count;
+            try
+            {
+                if (achieve > Int32.Parse(achieveLimit.Text))
+                {
+                    achieve = Int32.Parse(achieveLimit.Text);
+                    frm.taskText.Text += "Achieve Limit setted : " + achieve.ToString() + "\r\n\r\n";
+                }
+            }
+            catch (NullReferenceException){
+                frm.taskText.Text += "Achieve Limit setted : for all\r\n\r\n";
+            }
+        
             foreach (personalData data in dataList)
             {
-                if (tempCnt > 2) break;
+                if (tempCnt >= achieve) break;
                 ++tempCnt;
                 browser.Focus();
                 hand.getLikesData("https://facebook.com" + data.href + "&sk=likes", data.name, tempCnt, dataList.Count); // 좋아요 정보 파싱

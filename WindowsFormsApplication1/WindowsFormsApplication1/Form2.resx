@@ -117,7 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="smallTimer.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
+  <data name="textBox6.Text" xml:space="preserve">
+    <value>Howto
+1. If browser finished loading, press 'login' button to login.
+2. press 'getCode' button to start crawling.
+   if it finishes its tasks, this window would close itself immideately
+3. 'DEV tool' button can be used for using developer's tool
+4. press 'Quit' button if you want to quit the process</value>
+  </data>
 </root>
