@@ -337,7 +337,7 @@ namespace WindowsFormsApplication1
             byte[] encoder = Encoding.UTF8.GetBytes(temp1);
             sw.WriteLine(Encoding.UTF8.GetString(encoder));
             sw.Close();
-            System.Diagnostics.Process.Start("cmd.exe", "/c "+Application.StartupPath+"//python//python.bat");
+            
         }
         string MyDictionaryToJson()
         {

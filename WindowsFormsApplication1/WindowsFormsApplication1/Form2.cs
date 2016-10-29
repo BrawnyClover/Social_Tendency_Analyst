@@ -53,7 +53,7 @@ namespace WindowsFormsApplication1
                 Dock = DockStyle.Fill,
             };
         
-            this.Controls.Add(browser);
+            panel1.Controls.Add(browser);
         } // CEFsharp브라우저 initialize
         
         public Form2(string url, Form1 _form)
@@ -118,7 +118,7 @@ namespace WindowsFormsApplication1
                     frm.taskText.Text += "Achieve Limit setted : " + achieve.ToString() + "\r\n\r\n";
                 }
             }
-            catch (NullReferenceException){
+            catch (Exception){
                 frm.taskText.Text += "Achieve Limit setted : for all\r\n\r\n";
             }
         
@@ -129,6 +129,7 @@ namespace WindowsFormsApplication1
                 browser.Focus();
                 hand.getLikesData("https://facebook.com" + data.href + "&sk=likes", data.name, tempCnt, dataList.Count); // 좋아요 정보 파싱
             }
+            System.Diagnostics.Process.Start("cmd.exe", "/c " + Application.StartupPath + "//python//python.bat");
         }
 
         private void button1_Click(object sender, EventArgs e) // '실행하기' 버튼 이벤트

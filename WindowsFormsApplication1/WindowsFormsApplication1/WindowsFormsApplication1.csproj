@@ -178,6 +178,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -197,8 +198,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="aaaa.txt" />
     <Content Include="python\graphShow.py" />
+    <None Include="Resources\black_light_dark.jpg" />
+    <None Include="Resources\black_light_dark_big.jpg" />
+    <None Include="Resources\login-background2.jpg" />
+    <None Include="Resources\logo metal button.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
