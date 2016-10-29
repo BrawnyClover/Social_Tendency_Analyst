@@ -1,38 +1,23 @@
 import json
-import matplotlib.pyplot as plt
-from matplotlib import font_manager, rc
-from matplotlib import style
-import func
-
-font_name = font_manager.FontProperties(fname="c:/Windows/Fonts/malgun.ttf").get_name()
-rc('font', family=font_name)
-style.use('ggplot')
+import os
 
 data = ''
 classList = ''
-with open('data.json',encoding="cp949") as f:
+path = os.path.dirname(os.path.abspath("classList.json"))
+
+with open(path+'\\python\\data.json', encoding="utf-8-sig") as f:
     data = f.read()
 
-with open('classList.json',encoding="cp949")as g:
+with open(path+'\\python\\classList.json', encoding="utf-8-sig")as g:
     info = g.read()
 
-# str -> dictionary
 classData = json.loads(data) # number
 classInfo = json.loads(info) # category
 
-# dict -> str
-#s = json.dumps(d)
-#print(s,type(s))
 
 ratio = list()
 labels = list()
 
-#for key in d:
-#    for infoKey in e:
-#        if infoKey in d[key]:
-#            ratio.append(d[key][0])
-#            labels.append(key)
-#plt.bar(ratio,labels=labels,height=10)
 classDict = dict()
 for key in classInfo:
     classDict[key] = 0
@@ -61,6 +46,3 @@ for key in classDict:
     f.write(str(classDict[key]))
     f.write('],\n')
 f.write("}")
-#plt.pie(ratio, labels=labels, shadow=True, startangle=90)
-#plt.show()
-
