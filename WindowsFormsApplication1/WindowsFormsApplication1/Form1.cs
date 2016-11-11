@@ -20,7 +20,7 @@ namespace WindowsFormsApplication1
 {
     
     public partial class Form1 : Form
-    {
+    {  
         Dictionary<string, object> jsonValues;
         Dictionary<string, int> resultValues = new Dictionary<string, int>();
         List<int> valueList = new List<int>();

@@ -79,7 +79,7 @@ namespace WindowsFormsApplication1
             throw new NotImplementedException();
         }
 
-        public void login() 
+        public void login()  
         {
             browser.Focus();
             for (int i = 0; i < 3; i++) { SendKeys.Send("{tab}"); }

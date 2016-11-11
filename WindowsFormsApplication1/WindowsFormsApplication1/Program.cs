@@ -122,7 +122,7 @@ namespace WindowsFormsApplication1
             this.form1 = form1;
             this.form2 = form2;
         }
-
+        
         public void getFriendsName(HtmlAgilityPack.HtmlNodeCollection nodeCol)// 친구 이름 파싱하기
         {
             cnt = 0;
