@@ -46,7 +46,7 @@ namespace WindowsFormsApplication1
         private void taskText_TextChanged(object sender, EventArgs e)
         {
             taskText.SelectionStart = taskText.Text.Length;
-            taskText.ScrollToCaret();
+            taskText.ScrollToCaret(); // 텍스트박스 제일 아래로 내리기
         }
 
         private void graphCreate_Click(object sender, EventArgs e)
@@ -140,16 +140,16 @@ namespace WindowsFormsApplication1
             {
                 System.IO.StreamReader sr = new
                    System.IO.StreamReader(openFileDialog1.FileName);
-                var jsonChar = sr.ReadToEnd();
+                var jsonChar = sr.ReadToEnd(); // json파일 읽어오기
                 byte[] utf8Bytes = utf8.GetBytes(jsonChar);
-                string json = utf8.GetString(utf8Bytes);
+                string json = utf8.GetString(utf8Bytes); 
                 jsonValues = JsonConvert.DeserializeObject<Dictionary<string, object>>(json);
                 sr.Close();
                 int i = 0;
                 foreach(string key in jsonValues.Keys)
                 {
-                    string value = jsonValues[key].ToString();
-                    string temp = value.Substring(5, value.Length-8);
+                    string value = jsonValues[key].ToString(); // "[실제값]" 형식의 문자열
+                    string temp = value.Substring(5, value.Length-8); // 실제값 추출 -> "["와 "]" 제거
                     valueList.Add(Int32.Parse(temp));
                     resultValues.Add(key, valueList[i]);
                     showRes.Text += valueList[i++]+"\t";
@@ -158,6 +158,11 @@ namespace WindowsFormsApplication1
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
         {
 
         }

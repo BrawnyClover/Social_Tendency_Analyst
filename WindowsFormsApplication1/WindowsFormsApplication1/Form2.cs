@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CefSharp;
@@ -28,6 +29,8 @@ namespace WindowsFormsApplication1
         private string id;
         private string passwd;
         List<personalData> dataList;
+       
+
         public void setId(string id)
         {
             this.id = id;
@@ -68,7 +71,7 @@ namespace WindowsFormsApplication1
             worker.WorkerSupportsCancellation = true;
             //worker.DoWork += new DoWorkEventHandler(dowork);
             //worker.RunWorkerCompleted += Worker_RunWorkerCompleted;;
-            
+
         }
 
         private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -105,14 +108,13 @@ namespace WindowsFormsApplication1
             hand.getFriendsData(htmlCode); // 친구 정보 파싱하기
             this.dataList = hand.getList(); // 정보 리스트 가져오기
 
-            expectedTime = new TimeSpan(0,0,dataList.Count * 15 + 15);
-            expectedTimer.Text = expectedTime.ToString();
+
             
             int tempCnt = 0;
             int achieve = dataList.Count;
             try
             {
-                if (achieve > Int32.Parse(achieveLimit.Text))
+                if (achieve > Int32.Parse(achieveLimit.Text)) // 자료 수집 목표 인원수 받아오기
                 {
                     achieve = Int32.Parse(achieveLimit.Text);
                     frm.taskText.Text += "Achieve Limit setted : " + achieve.ToString() + "\r\n\r\n";
@@ -121,15 +123,21 @@ namespace WindowsFormsApplication1
             catch (Exception){
                 frm.taskText.Text += "Achieve Limit setted : for all\r\n\r\n";
             }
-        
+
+            expectedTime = new TimeSpan(0, 0, (achieve-1) * 15 + 15);
+            expectedTimer.Text = expectedTime.ToString();
+
             foreach (personalData data in dataList)
             {
                 if (tempCnt >= achieve) break;
                 ++tempCnt;
                 browser.Focus();
-                hand.getLikesData("https://facebook.com" + data.href + "&sk=likes", data.name, tempCnt, dataList.Count); // 좋아요 정보 파싱
-            }
-            System.Diagnostics.Process.Start("cmd.exe", "/c " + Application.StartupPath + "//python//python.bat");
+                try {
+                    hand.getLikesData("https://facebook.com" + data.href + "&sk=likes", data.name, tempCnt, dataList.Count); // 좋아요 정보 파싱
+                }
+                catch (Exception) { }
+            }    
+            System.Diagnostics.Process.Start("cmd.exe", "/c " + Application.StartupPath + "//python//python.bat"); // python 스크립트 실행
         }
 
         private void button1_Click(object sender, EventArgs e) // '실행하기' 버튼 이벤트
@@ -140,7 +148,7 @@ namespace WindowsFormsApplication1
 
         private void showDevTools_Click(object sender, EventArgs e)
         {
-            browser.ShowDevTools();
+            browser.ShowDevTools(); // 개발자 브라우저 보여주기
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -159,6 +167,12 @@ namespace WindowsFormsApplication1
         private void button4_Click(object sender, EventArgs e)
         {
             
+        }
+
+        private void suspendButton_Click(object sender, EventArgs e)
+        {
+            isOkay = !isOkay;
+            Thread.Sleep(3000);
         }
     }
 }

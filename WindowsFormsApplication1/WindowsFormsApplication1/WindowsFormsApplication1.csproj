@@ -199,6 +199,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="python\graphShow.py" />
+    <None Include="Resources\black-and-red-abstract.jpg" />
+    <None Include="Resources\black_light_dark_small.jpg" />
+    <None Include="Resources\black_light_dark_mid.jpg" />
+    <None Include="Resources\blackwood.jpg" />
+    <None Include="Resources\Red and Black.jpg" />
     <None Include="Resources\black_light_dark.jpg" />
     <None Include="Resources\black_light_dark_big.jpg" />
     <None Include="Resources\login-background2.jpg" />

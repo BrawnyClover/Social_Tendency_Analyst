@@ -24,6 +24,7 @@ namespace WindowsFormsApplication1
             Application.Run(new Form1());
         }
     }
+
     public struct personalData
     {
         public string name;
@@ -85,7 +86,7 @@ namespace WindowsFormsApplication1
                 TimeSpan lim = new TimeSpan(0, 0, 15);
                 form2.smallTimer.Text = (lim-sw.Elapsed).ToString();
                 form2.expectedTimer.Text = (form2.expectedTime - sw.Elapsed).ToString();
-                if (sw.ElapsedMilliseconds > 15000) break;
+                if (sw.ElapsedMilliseconds > 15000) break; // 1인당 15초간 스크롤바 내리기
                 
                 ScrollToBottom();// 스크롤 아래로 내리기
             }
@@ -93,15 +94,20 @@ namespace WindowsFormsApplication1
             htmlCode = form2.browser.GetSourceAsync().Result;// 가져온 코드를 string형으로 반환
             return htmlCode;
         }
-        
-        private void ScrollToBottom()     
+
+        private void ScrollToBottom()  // 스크롤바 아래로 내리는 메소드   
         {
             // MOST IMP : processes all windows messages queue
             Application.DoEvents();
             form2.browser.Focus();
-            SendKeys.Send(" ");
+            if (form2.TopLevel == true)
+            {
+                SendKeys.Send("{DOWN}");
+            }
+        
         }
     }
+
     public class handling // 가져온 html코드를 파싱하고 정리
     {
         Dictionary<String, int> dictionary = new Dictionary<string, int>();
@@ -155,7 +161,7 @@ namespace WindowsFormsApplication1
             }
         }
 
-        public void getPageName(HtmlAgilityPack.HtmlNodeCollection nodeCol)
+        public void getPageName(HtmlAgilityPack.HtmlNodeCollection nodeCol)// 페이지 이름 파싱하기
         {
             cnt = 0;
             try
@@ -174,7 +180,7 @@ namespace WindowsFormsApplication1
             }
         }
 
-        public void getPageClass(HtmlAgilityPack.HtmlNodeCollection nodeCol)
+        public void getPageClass(HtmlAgilityPack.HtmlNodeCollection nodeCol)// 페이지 분류정보 파싱하기
         {
             cnt = 0;
             string classInfo = "";
@@ -229,8 +235,8 @@ namespace WindowsFormsApplication1
             tempCode = gather.getHtml(url);
             HtmlAgilityPack.HtmlNodeCollection nameCol = null;
             HtmlAgilityPack.HtmlNodeCollection classCol = null;
-            nameCol = parseTextFunc(tag + "/div[@class='fsl fwb fcb']", tempCode);
-            classCol = parseTextFunc(tag + "/div[@class='fsm fwn fcg']", tempCode);
+            nameCol = parseTextFunc(tag + "/div[@class='fsl fwb fcb']", tempCode); // 이름 컬렉션
+            classCol = parseTextFunc(tag + "/div[@class='fsm fwn fcg']", tempCode); // 분류/태그 컬렉션
             getPageName(nameCol);
             getPageClass(classCol);
             //output(pageInfoList);
@@ -239,7 +245,7 @@ namespace WindowsFormsApplication1
             output();
             form1.taskText.Text += "the number of gathered item = " + dictionary.Count.ToString()+"\r\n\r\n";
 
-            dataOut();
+            dataOut(); // 데이터를 json파일로 내보내기
         }   
 
         public HtmlAgilityPack.HtmlNodeCollection parseTextFunc(string str, string htmlCode)// tag가 str인 요소 파싱하는 메소드
@@ -316,6 +322,7 @@ namespace WindowsFormsApplication1
             data.pageClass = value;
             temp[index] = data;
         }
+
         public List<personalData> getList()
         {
             return dataList;
@@ -334,11 +341,12 @@ namespace WindowsFormsApplication1
             
             string temp1 = MyDictionaryToJson();
             form1.showRes.Text = temp1;
-            byte[] encoder = Encoding.UTF8.GetBytes(temp1);
+            byte[] encoder = Encoding.UTF8.GetBytes(temp1); // utf8로 인코딩
             sw.WriteLine(Encoding.UTF8.GetString(encoder));
             sw.Close();
             
         }
+
         string MyDictionaryToJson()
         {
             var entries = dictionary.Select(d =>

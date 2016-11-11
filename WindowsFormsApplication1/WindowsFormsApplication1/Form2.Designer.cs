@@ -33,20 +33,21 @@
             this.expectedTimer = new System.Windows.Forms.TextBox();
             this.achieveLimit = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.quitButton = new System.Windows.Forms.Button();
+            this.loginButton = new System.Windows.Forms.Button();
             this.showDevTools = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.getCodeButton = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
+            this.suspendButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // smallTimer
             // 
             this.smallTimer.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.smallTimer.Location = new System.Drawing.Point(686, 245);
+            this.smallTimer.Location = new System.Drawing.Point(686, 303);
             this.smallTimer.Name = "smallTimer";
             this.smallTimer.ReadOnly = true;
             this.smallTimer.Size = new System.Drawing.Size(112, 31);
@@ -55,7 +56,7 @@
             // expectedTimer
             // 
             this.expectedTimer.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.expectedTimer.Location = new System.Drawing.Point(686, 282);
+            this.expectedTimer.Location = new System.Drawing.Point(686, 340);
             this.expectedTimer.Name = "expectedTimer";
             this.expectedTimer.ReadOnly = true;
             this.expectedTimer.Size = new System.Drawing.Size(112, 31);
@@ -65,7 +66,7 @@
             // 
             this.achieveLimit.BackColor = System.Drawing.SystemColors.ControlDark;
             this.achieveLimit.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.achieveLimit.Location = new System.Drawing.Point(687, 208);
+            this.achieveLimit.Location = new System.Drawing.Point(687, 266);
             this.achieveLimit.Name = "achieveLimit";
             this.achieveLimit.Size = new System.Drawing.Size(39, 31);
             this.achieveLimit.TabIndex = 27;
@@ -74,46 +75,46 @@
             // 
             this.panel1.Location = new System.Drawing.Point(12, 12);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(547, 308);
+            this.panel1.Size = new System.Drawing.Size(547, 369);
             this.panel1.TabIndex = 30;
             // 
-            // button3
+            // quitButton
             // 
-            this.button3.BackColor = System.Drawing.Color.Transparent;
-            this.button3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button3.BackgroundImage")));
-            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.button3.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.button3.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.button3.Location = new System.Drawing.Point(610, 110);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(188, 44);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "Quit";
-            this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.quitButton.BackColor = System.Drawing.Color.Transparent;
+            this.quitButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("quitButton.BackgroundImage")));
+            this.quitButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.quitButton.FlatAppearance.BorderSize = 0;
+            this.quitButton.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ButtonShadow;
+            this.quitButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.quitButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.quitButton.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.quitButton.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.quitButton.Location = new System.Drawing.Point(610, 110);
+            this.quitButton.Name = "quitButton";
+            this.quitButton.Size = new System.Drawing.Size(188, 44);
+            this.quitButton.TabIndex = 3;
+            this.quitButton.Text = "Quit";
+            this.quitButton.UseVisualStyleBackColor = false;
+            this.quitButton.Click += new System.EventHandler(this.button3_Click);
             // 
-            // button2
+            // loginButton
             // 
-            this.button2.BackColor = System.Drawing.Color.Transparent;
-            this.button2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button2.BackgroundImage")));
-            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.button2.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.button2.Location = new System.Drawing.Point(610, 17);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(188, 47);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Login";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.loginButton.BackColor = System.Drawing.Color.Transparent;
+            this.loginButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("loginButton.BackgroundImage")));
+            this.loginButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.loginButton.FlatAppearance.BorderSize = 0;
+            this.loginButton.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ButtonShadow;
+            this.loginButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.loginButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.loginButton.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.loginButton.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.loginButton.Location = new System.Drawing.Point(610, 17);
+            this.loginButton.Name = "loginButton";
+            this.loginButton.Size = new System.Drawing.Size(188, 47);
+            this.loginButton.TabIndex = 2;
+            this.loginButton.Text = "Login";
+            this.loginButton.UseVisualStyleBackColor = false;
+            this.loginButton.Click += new System.EventHandler(this.button2_Click);
             // 
             // showDevTools
             // 
@@ -134,24 +135,24 @@
             this.showDevTools.UseVisualStyleBackColor = false;
             this.showDevTools.Click += new System.EventHandler(this.showDevTools_Click);
             // 
-            // button1
+            // getCodeButton
             // 
-            this.button1.BackColor = System.Drawing.Color.Transparent;
-            this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.button1.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.button1.Location = new System.Drawing.Point(610, 64);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(188, 46);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "getCode";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.getCodeButton.BackColor = System.Drawing.Color.Transparent;
+            this.getCodeButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("getCodeButton.BackgroundImage")));
+            this.getCodeButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.getCodeButton.FlatAppearance.BorderSize = 0;
+            this.getCodeButton.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ButtonShadow;
+            this.getCodeButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.getCodeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.getCodeButton.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.getCodeButton.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.getCodeButton.Location = new System.Drawing.Point(610, 64);
+            this.getCodeButton.Name = "getCodeButton";
+            this.getCodeButton.Size = new System.Drawing.Size(188, 46);
+            this.getCodeButton.TabIndex = 0;
+            this.getCodeButton.Text = "getCode";
+            this.getCodeButton.UseVisualStyleBackColor = false;
+            this.getCodeButton.Click += new System.EventHandler(this.button1_Click);
             // 
             // button4
             // 
@@ -161,7 +162,7 @@
             this.button4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button4.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.button4.Location = new System.Drawing.Point(572, 204);
+            this.button4.Location = new System.Drawing.Point(572, 262);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(113, 33);
             this.button4.TabIndex = 31;
@@ -177,7 +178,7 @@
             this.button5.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button5.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.button5.Location = new System.Drawing.Point(732, 206);
+            this.button5.Location = new System.Drawing.Point(732, 264);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(96, 33);
             this.button5.TabIndex = 33;
@@ -193,7 +194,7 @@
             this.button6.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button6.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.button6.Location = new System.Drawing.Point(565, 243);
+            this.button6.Location = new System.Drawing.Point(565, 301);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(120, 33);
             this.button6.TabIndex = 34;
@@ -209,7 +210,7 @@
             this.button7.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button7.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.button7.Location = new System.Drawing.Point(565, 280);
+            this.button7.Location = new System.Drawing.Point(565, 338);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(120, 33);
             this.button7.TabIndex = 35;
@@ -217,13 +218,33 @@
             this.button7.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button7.UseVisualStyleBackColor = false;
             // 
+            // suspendButton
+            // 
+            this.suspendButton.BackColor = System.Drawing.Color.Transparent;
+            this.suspendButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("suspendButton.BackgroundImage")));
+            this.suspendButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.suspendButton.FlatAppearance.BorderSize = 0;
+            this.suspendButton.FlatAppearance.MouseDownBackColor = System.Drawing.SystemColors.ButtonShadow;
+            this.suspendButton.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.suspendButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.suspendButton.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.suspendButton.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.suspendButton.Location = new System.Drawing.Point(610, 200);
+            this.suspendButton.Name = "suspendButton";
+            this.suspendButton.Size = new System.Drawing.Size(188, 44);
+            this.suspendButton.TabIndex = 36;
+            this.suspendButton.Text = "Suspend";
+            this.suspendButton.UseVisualStyleBackColor = false;
+            this.suspendButton.Click += new System.EventHandler(this.suspendButton_Click);
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::WindowsFormsApplication1.Properties.Resources.black_light_dark;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(840, 339);
+            this.ClientSize = new System.Drawing.Size(840, 393);
+            this.Controls.Add(this.suspendButton);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.button5);
@@ -232,10 +253,10 @@
             this.Controls.Add(this.achieveLimit);
             this.Controls.Add(this.expectedTimer);
             this.Controls.Add(this.smallTimer);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.quitButton);
+            this.Controls.Add(this.loginButton);
             this.Controls.Add(this.showDevTools);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.getCodeButton);
             this.Name = "Form2";
             this.Text = "Crawling Broser";
             this.ResumeLayout(false);
@@ -245,10 +266,10 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button getCodeButton;
         private System.Windows.Forms.Button showDevTools;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button loginButton;
+        private System.Windows.Forms.Button quitButton;
         public System.Windows.Forms.TextBox smallTimer;
         public System.Windows.Forms.TextBox expectedTimer;
         private System.Windows.Forms.TextBox achieveLimit;
@@ -257,5 +278,6 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button suspendButton;
     }
 }
