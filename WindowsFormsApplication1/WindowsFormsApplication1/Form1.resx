@@ -2210,7 +2210,7 @@
     <value>17, 17</value>
   </metadata>
   <data name="textBox6.Text" xml:space="preserve">
-    <value>Social Tendency Analyser
+    <value>Social Tendency Analyst
 1. Input your ID &amp; PWD in each box
 2. press 'navigate' button
 3. press 'Browse' button and load 'data.json' file
