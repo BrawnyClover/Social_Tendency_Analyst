@@ -4,3 +4,6 @@ This project, refered as 'Social Tendency Analyst', provides a graph that contai
 # Developer
 M.J, Son
 2nd grade of KDMHS
+
+# Relaesed version
+https://drive.google.com/open?id=0B_WUoAZUAnvuMzdya09qeXNwWTg
