@@ -23,7 +23,8 @@ This project, refered as 'Social Tendency Analyst', provides a graph that contai
 There are four textboxes, one for input Id and Password, another for showing JSON data, the other for showing crawled data, and last for showing progress log.<br>
 And there are three buttons, one for opening Crawling Browser, named navigate button, another for loading json file, named browse button, and Graph button for generating Graph.
 
-1. ![crawling](./assets/crawling.PNG)
+2. 
+![crawling](./assets/crawling.PNG)
 If you press navigate button, you'll show this window.<br>
 There are five buttons, and each button has each functions.
 * Login : Automatically input Id and Password to browser.
@@ -37,15 +38,18 @@ And there are three textboxes.
 * Left Time : show left time for crawling current friend.
 * Expected : show expected left time for the end of crawling.
 
-1.![working](./assets/working.PNG)
+3.
+![working](./assets/working.PNG)
 Log in, and press getData button. Then this window will start crawling.<br>
 For the end of crawling each friend's data, three textboxes of mainwindow will refresh its contents.<br>
 
-1.![dialog](./assets/dialog.PNG)
+4.
+![dialog](./assets/dialog.PNG)
 When the crawling task end, press 'browse' button and select 'data.json' file.<br>
 Then, press 'Graph' button, and this window will generate graph of gathered data.<Br>
 
-1.![graph](./assets/캡z처.PNG)
+5.
+![graph](./assets/캡z처.PNG)
 When all the tasks above finished, find "Result.xls" file and open it.<br>
 You'll see the graph with 13 vertexes. <br>
 Enjoy your result!
