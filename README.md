@@ -60,3 +60,5 @@ M.J, Son <br>
 
 # Relaesed version
 https://drive.google.com/open?id=0B_WUoAZUAnvuMzdya09qeXNwWTg
+<br>
+Notice that this software will not act properly now, because the DOM constitution keeps changing, but if you can find proper xpath syntax for each DOM, you can make it work again.
