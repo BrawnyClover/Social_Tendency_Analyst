@@ -6,6 +6,7 @@ This project, refered as 'Social Tendency Analyst', provides a graph that contai
 우리에겐 많은 페이스북 친구들이 있다. 친구들은 여러 페이지에 대해 좋아요를 눌렀고, 각 페이지들은 몇 가지의 항목으로 분류될 수 있다.<br>
 페이지들의 항목별 통계값을 모아 방사형 그래프로 나타내어 사용자의 성향을 분석, 시각화하는 소프트웨어이다.
 <br>
+
 ## 사용 언어
 * C#
 * Python
