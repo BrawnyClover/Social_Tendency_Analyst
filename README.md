@@ -1,5 +1,6 @@
 # Explanation
 This project, refered as 'Social Tendency Analyst', provides a graph that contains data about tendency of a group that a user belongs, by gathering "Likes" data from 'facebook'.
+<img src="https://github.com/YuHyun7/Social_Tendency_Analyst/blob/master/assets/you.png", width="400" height="300"/>
 
 # Outline
 
